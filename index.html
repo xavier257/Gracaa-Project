@@ -3,63 +3,578 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 19th Birthday Waithera</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Belated Birthday Wishes for Waithera</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #a1c4fd);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 850px;
+            width: 100%;
+            text-align: center;
+            perspective: 1000px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #8a2be2;
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            background: linear-gradient(45deg, #8a2be2, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073; }
+            to { text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6; }
+        }
+
+        .subtitle {
+            color: #6a11cb;
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .gift-section {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .message-section {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .gift-container {
+            position: relative;
+            margin: 0 auto;
+            cursor: pointer;
+            width: 250px;
+            height: 250px;
+            perspective: 1000px;
+        }
+
+        .gift-box {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .gift-box.open {
+            transform: rotateY(180deg);
+        }
+
+        .gift-box > div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .gift-front {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            transform: rotateY(0deg);
+        }
+
+        .gift-lid {
+            width: 270px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff8e53, #ff6b6b);
+            position: absolute;
+            top: -50px;
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .gift-bow {
+            width: 80px;
+            height: 80px;
+            background: #ffcad4;
+            position: absolute;
+            top: -40px;
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gift-bow:before, .gift-bow:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 40px;
+            background: #ffcad4;
+            border-radius: 50%;
+        }
+
+        .gift-bow:before {
+            top: 20px;
+            left: -50px;
+            transform: rotate(-45deg);
+        }
+
+        .gift-bow:after {
+            top: 20px;
+            right: -50px;
+            transform: rotate(45deg);
+        }
+
+        .gift-back {
+            background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            transform: rotateY(180deg);
+            padding: 20px;
+            flex-direction: column;
+            color: #5d3fd3;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .tap-instruction {
+            margin-top: 20px;
+            color: #6a11cb;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .message-container {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            display: none;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #ff6b6b;
+        }
+
+        .message-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53, #a1c4fd, #c2e9fb);
+            z-index: -1;
+            border-radius: 25px;
+            animation: borderGlow 3s linear infinite;
+            background-size: 400% 400%;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #333;
+            min-height: 250px;
+            font-family: 'Georgia', serif;
+        }
+
+        .typewriter-cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: #ff6b6b;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .apology {
+            margin-top: 25px;
+            font-style: italic;
+            color: #6a11cb;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .decoration {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+        }
+
+        .balloon {
+            width: 60px;
+            height: 70px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: inset -10px -10px 10px rgba(0,0,0,0.1);
+        }
+
+        .balloon:before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 70px;
+            background: #ff6b6b;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .balloon:nth-child(2) {
+            background: #a1c4fd;
+            animation-delay: 0.5s;
+        }
+
+        .balloon:nth-child(3) {
+            background: #ff8e53;
+            animation-delay: 1s;
+        }
+
+        .balloon:nth-child(4) {
+            background: #c2e9fb;
+            animation-delay: 1.5s;
+        }
+
+        .balloon:nth-child(5) {
+            background: #ffcad4;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .flowers {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .flower {
+            font-size: 2.5rem;
+            animation: sway 4s ease-in-out infinite;
+        }
+
+        .flower:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .flower:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .flower:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .footer {
+            margin-top: 20px;
+            color: #6a11cb;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            opacity: 0;
+            z-index: 1000;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(1000px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .music-control {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .content {
+                flex-direction: column;
+            }
+            .gift-container {
+                width: 200px;
+                height: 200px;
+            }
+            .gift-lid {
+                width: 220px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Initial Birthday Message -->
-    <div id="birthday-text" class="birthday-text">
-        <h1>Happy Birthday Waithera ❤️</h1>
+    <div class="music-control" id="musicControl">
+        <i class="fas fa-music"></i>
     </div>
 
-    <!-- Celebration Section -->
-    <div id="celebration" class="hidden">
-        <h2>🎉 Happy 19th Birthday 🎉</h2>
-<!--        <p>19 Suits you</p>-->
-        <button id="next-page">Enter The Universe!</button>
-    </div>
+    <div class="container">
+        <div class="header">
+            <h1>Belated Birthday Wishes</h1>
+            <p class="subtitle">For the wonderful Waithera</p>
+        </div>
 
-    <!-- Universe Section -->
-    <div id="universe" class="universe hidden">
-        <div class="universe-content">
-            <div id="moon"></div>
-            <div id="stars"></div>
-            <div id="planets"></div>
-            <div class="birthday-message">19 looks good on you!</div>
+        <div class="decoration">
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+            <div class="balloon"></div>
+        </div>
 
-            <!-- Slideshow Container -->
-            <div id="slideshow-container">
-                <div id="slideshow">
-                    <img class="slide active" src="drawable/IMG_1234.jpg" alt="Birthday image">
-                    <img class="slide" src="drawable/IMG_2.jpeg" alt="Birthday image">
-                    <img class="slide" src="drawable/IMG_3.jpeg" alt="Birthday image">
-                    <img class="slide" src="drawable/IMG_4.jpeg" alt="Birthday image">
-                    <img class="slide" src="drawable/IMG_5.jpeg" alt="Birthday image">
-                    <img class="slide" src="drawable/IMG_6.jpeg" alt="Birthday image">
-                    <img class="slide" src="drawable/IMG_7.jpeg" alt="Birthday image">
-                    <img class="slide" src="drawable/IMG_8.jpeg" alt="Birthday image">
-                    <img class="slide" src="drawable/IMG_9.jpeg" alt="Birthday image">
-                    <img class="slide" src="drawable/IMG_10.jpeg" alt="Birthday image">
-                    <img class="slide" src="drawable/IMG_11.jpeg" alt="Birthday image">
-                    <img class="slide" src="drawable/IMG_12.jpeg" alt="Birthday image">
-                    <img class="slide" src="drawable/IMG_13.jpeg" alt="Birthday image">
-                    <img class="slide" src="drawable/IMG_15.jpeg" alt="Birthday image">
-                    <img class="slide" src="drawable/IMG_7.jpeg" alt="Birthday image">
+        <div class="content">
+            <div class="gift-section">
+                <div class="gift-container" id="giftContainer">
+                    <div class="gift-box" id="giftBox">
+                        <div class="gift-front">
+                            <div class="gift-lid"></div>
+                            <div class="gift-bow"></div>
+                        </div>
+                        <div class="gift-back">
+                            <p>Happy Birthday Waithera!</p>
+                            <i class="fas fa-gift" style="font-size: 3rem; margin-top: 15px;"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="tap-instruction">Tap the gift to reveal your special message</p>
+            </div>
+
+            <div class="message-section">
+                <div class="message-container" id="messageContainer">
+                    <div class="message" id="message"></div>
+                    <p class="apology">Though my wishes arrive a little late, my heart celebrates you with the same joy and warmth!</p>
                 </div>
             </div>
         </div>
+
+        <div class="flowers">
+            <div class="flower">🌸</div>
+            <div class="flower">🌺</div>
+            <div class="flower">🌷</div>
+            <div class="flower">🌹</div>
+        </div>
+
+        <div class="footer">
+            <p>Wishing you happiness today and always</p>
+        </div>
     </div>
 
-    <!-- Audio Elements -->
-    <audio id="love-audio" loop>
-        <source src="drawable/song.mp3" type="audio/mpeg">
+    <audio id="birthdayMusic" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-happy-birthday-to-you-458.mp3" type="audio/mpeg">
     </audio>
 
-    <audio id="space-music" loop>
-        <source src="drawable/song.mp3" type="audio/mpeg">
-    </audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const giftBox = document.getElementById('giftBox');
+            const messageContainer = document.getElementById('messageContainer');
+            const messageElement = document.getElementById('message');
+            const musicControl = document.getElementById('musicControl');
+            const birthdayMusic = document.getElementById('birthdayMusic');
+            
+            // Birthday poem
+            const poem = `Differences aside, and time passed by,
+Yet fond memories never truly die.
+On this day that marks your birth,
+I send wishes across the earth.
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+Though my greeting comes a little late,
+My warm feelings for you don't abate.
+May this year bring joy and light,
+Making everything in your life bright.
+
+For an old acquaintance, once so dear,
+I send birthday cheer from far and near.
+May happiness follow wherever you go,
+And in your heart, may love always flow.
+
+May your days be filled with laughter true,
+And all your dreams and wishes come through.
+Though time and distance keep us apart,
+You're always remembered here in my heart.
+
+So here's to you on your special day,
+In the warmest, most heartfelt way.
+May blessings shower upon your life,
+Dispelling all sorrow and strife.`;
+            
+            let isOpen = false;
+            let musicPlaying = false;
+            
+            giftBox.addEventListener('click', function() {
+                if (!isOpen) {
+                    // Open the gift
+                    giftBox.classList.add('open');
+                    
+                    // Show message after a delay
+                    setTimeout(function() {
+                        messageContainer.style.display = 'block';
+                        typeWriter(poem, 0);
+                        createConfetti();
+                    }, 1000);
+                    
+                    isOpen = true;
+                }
+            });
+            
+            // Typewriter effect
+            function typeWriter(text, index) {
+                if (index < text.length) {
+                    messageElement.innerHTML = text.substring(0, index + 1) + '<span class="typewriter-cursor"></span>';
+                    setTimeout(function() {
+                        typeWriter(text, index + 1);
+                    }, 50);
+                } else {
+                    messageElement.innerHTML = text;
+                }
+            }
+            
+            // Create confetti effect
+            function createConfetti() {
+                const colors = ['#e63946', '#f4a261', '#2a9d8f', '#e9c46a', '#264653', '#d63384', '#8a2be2', '#ff6b6b'];
+                
+                for (let i = 0; i < 150; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animation = `confetti-fall ${Math.random() * 3 + 2}s linear forwards`;
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    document.body.appendChild(confetti);
+                    
+                    // Remove confetti after animation
+                    setTimeout(() => {
+                        if (confetti.parentNode) {
+                            confetti.remove();
+                        }
+                    }, 5000);
+                }
+            }
+            
+            // Music control
+            musicControl.addEventListener('click', function() {
+                if (musicPlaying) {
+                    birthdayMusic.pause();
+                    musicControl.innerHTML = '<i class="fas fa-music"></i>';
+                } else {
+                    birthdayMusic.play();
+                    musicControl.innerHTML = '<i class="fas fa-pause"></i>';
+                }
+                musicPlaying = !musicPlaying;
+            });
+            
+            // Add some floating hearts
+            function createHearts() {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'fixed';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '100vh';
+                heart.style.opacity = Math.random() * 0.5 + 0.5;
+                heart.style.animation = `float ${Math.random() * 6 + 4}s linear forwards`;
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    if (heart.parentNode) {
+                        heart.remove();
+                    }
+                }, 10000);
+            }
+            
+            // Create hearts periodically
+            setInterval(createHearts, 1000);
+        });
+    </script>
 </body>
 </html>
